@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>상품등록페이지</title>
+
+
+    <style>
+
+        /* CSS 스타일링 코드 */
+        /* 전체 페이지 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 페이지 컨테이너 */
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 제목 스타일 */
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        /* 입력 필드 스타일 */
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* 등록 버튼 스타일 */
+        input[type="submit"],
+        .item-list-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover,
+        .item-list-button:hover {
+            background-color: #45a049;
+        }
+
+        /* 이미지 업로드 필드 스타일 */
+        input[type="file"] {
+            padding: 6px 10px;
+        }
+
+        /* 버튼 레이아웃 */
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* 버튼 사이 간격 */
+        .button-group button {
+            flex: 1;
+            margin: 0 5px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+<h1>상품등록페이지</h1>
+
+<form action="/demo/add1" method="post" enctype="multipart/form-data">
+
+    <label for="name">이름:</label>
+    <input type="text" id="name" name="name"><br>
+
+    <label for="description">내용:</label>
+    <input type="text" id="description" name="description"><br>
+
+    <label for="price">가격:</label>
+    <input type="text" id="price" name="price"><br>
+
+    <label for="imgFile" >상품 이미지 업로드:</label>
+    <input type="file" id="imgFile" name="imgFile"><br>
+
+    <div class="button-group">
+         <input type="submit" value="등록하기">
+    </div>
+</form>
+
+      <br>  <form action="/demo/list" method="get">
+            <button type="submit" class="item-list-button" >상품목록</button>
+
+</form>
+</div>
+
+
+</body>
+</html>

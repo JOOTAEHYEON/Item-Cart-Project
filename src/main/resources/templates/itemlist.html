@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>상품 목록</title>
+
+<style>
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .add-to-item-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    }
+
+    .cart-button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    /* 페이지네이션 스타일 */
+    .pagination {
+        display: inline-block;
+        margin-top: 20px;
+    }
+
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+        border: 1px solid #ddd;
+        margin: 0 4px;
+    }
+
+    .pagination a.active {
+        background-color: #4CAF50;
+        color: white;
+        border: 1px solid #4CAF50;
+    }
+
+    .pagination a:hover:not(.active) {background-color: #ddd;}
+
+    /* float 정리 */
+    .clearfix {
+        overflow: auto;
+    }
+
+    </style>
+
+</head>
+<body>
+
+
+<h1>상품 목록</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>상품 번호</th>
+        <th>상품 이미지</th>
+        <th>상품 카테고리</th>
+        <th>상품 설명</th>
+      <!--  <th>상품 가격</th> -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.id}"></td>    <!-- &nbsp; -->
+
+        <td>
+            <a th:href="@{/demo/view(id=${item.id})}">
+            <img th:src="@{${item.filepath}}" width="150px" height="150px">
+            </a>
+        </td>
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.description}"></td>
+    <!--    <td th:text="${item.price}"></td> -->
+    </tr>
+
+  <!--  th:href="@{/demo/view(id=${item.id})}"-->
+
+        <td colspan="2">
+            <form action="/demo/add" method="get">
+                <button type="submit" class="add-to-item-button" >상품등록페이지</button>
+            </form>
+        </td>
+
+
+
+        <td colspan="2">
+            <form action="/cart" method="get">
+                <button type="submit" class="cart-button" >장바구니</button>
+            </form>
+        </td>
+
+
+    </tbody>
+</table>
+
+<div class="pagination">
+<th:block th:each=" page : ${#numbers.sequence(startPage,endPage)}">
+    <a th:if = "${page != nowPage} " th:href="@{/demo/list(page=${page -1})}" th:text="${page}"></a>
+
+    <strong th:if="${nowPage !=nowPage}" th:text="${page}" style="color: yellow"> </strong>
+</th:block>
+</div>
+
+</body>
+</html>

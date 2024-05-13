@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>상품상세페이지</title>
+
+    <style>
+        /* 중앙 정렬을 위한 CSS */
+        table {
+            width: 80%; /* 전체 폭의 80%로 설정 */
+            margin: 0 auto; /* 가운데 정렬 */
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+
+        td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        /* description을 큰 글꼴로 설정 */
+        .description {
+            font-size: 18px; /* 크기 조정 */
+            font-weight: bold; /* 굵은 글꼴 */
+            padding: 20px 0; /* 위아래 여백 추가 */
+        }
+
+        .price {
+            font-size: 24px; /* 크기 조정 */
+            font-weight: bold; /* 굵은 글꼴 */
+            padding-bottom: 20px; /* 아래쪽 여백 추가 */
+        }
+
+        .add-to-cart-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px; /* 위쪽 여백 추가 */
+            cursor: pointer;
+        }
+
+        .item-list-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px; /* 위쪽 여백 추가 */
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<h1>상품 상세페이지</h1>
+
+<table>
+
+<thead>
+
+<td colspan="2"><img th:src="@{${items.filepath}}" alt="Product Image" style="width: 100%; max-width: 400px; height: auto;"></td>
+
+
+</thead>
+
+<tbody>
+
+<tr>
+    <td colspan="2"><br></td> <!-- 한 줄 띄우기 -->
+</tr>
+
+<tr>
+<td colspan="2" class="description" th:text = "${items.description}">상품 설명이 여기에 나타납니다.</td>
+</tr>
+
+<tr>
+    <td colspan="2"><br></td> <!-- 한 줄 띄우기 -->
+</tr>
+
+<tr>
+    <td colspan="2" class="price" th:text = "'가격: ' + ${items.price} + '원'">가격이 여기에 표시됩니다.</td>
+</tr>
+
+<tr>
+    <td colspan="2"><br></td> <!-- 한 줄 띄우기 -->
+</tr>
+
+<tr>
+    <td colspan="2">
+        <form action="/demo/cart" method="post">
+            <input type="hidden" name="productId" th:value="${items.id}">
+            <button type="submit" class="add-to-cart-button">장바구니에 추가</button>
+        </form>
+    </td>
+</tr>
+
+<td colspan="2">
+    <form action="/demo/list" method="get">
+        <button type="submit" class="item-list-button" >상품 목록</button>
+    </form>
+</td>
+
+</tbody>
+
+</table>
+
+</body>
+</html>
+
+

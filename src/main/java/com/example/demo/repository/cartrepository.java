@@ -1,0 +1,14 @@
+package com.example.demo.repository;
+
+import com.example.demo.entity.cart;
+
+import com.example.demo.entity.item;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface cartrepository extends JpaRepository<cart, Long> {
+
+
+}
+
